@@ -1,47 +1,73 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Banner.scss";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import request from "../config/Request";
-import InfoIcon from "@material-ui/icons/Info";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import requests from "../config/Requests.js";
 import axios from "axios";
+import QuickView from "./QuickView";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
+  const [popup, setPopup] = useState(false);
+
+  function handlePopup() {
+    popup ? setPopup(false) : setPopup(true);
+  }
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(request.fetchTrending);
+      const request = await axios.get(requests.fetchTrending);
 
       setMovie(
         request.data.results[
-          Math.floor(Math.random() * request.data.results.lenght - 1)
+          Math.floor(Math.random() * request.data.results.length - 1)
         ]
       );
     }
     fetchData();
   }, []);
 
-  console.log(movie);
+  function truncateText(string, n) {
+    return string?.length > n ? string.substr(0, n - 1) + "..." : string;
+  }
+
+  const bannerStyle = {
+    backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
+    backgroundSize: "cover",
+    backgroundPosition: "center center",
+  };
 
   return (
-    <header className="banner">
+    <header className="banner" style={bannerStyle}>
       <div className="banner__content">
-        <h1 className="banner__title">Titre</h1>
+        <h1 className="banner__title">
+          {movie?.title || movie?.name || movie?.original_title}
+        </h1>
         <p className="banner__description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima dolor
-          facilis beatae recusandae veniam nesciunt? Vero quo quos vel
-          temporibus!...
+          {truncateText(movie?.overview, 100)}
         </p>
-        <div className="banner__buttons">
-          <button className="banner__button banner__button--play">
-            <PlayArrowIcon /> lecture
-          </button>
-          <button className="banner__button">
-            <InfoIcon /> Plus dinfos
-          </button>
-        </div>
+        {movie.id && (
+          <div className="banner__buttons">
+            <Link to={`/video/${movie?.id}`}>
+              <button className="banner__button banner__button--play">
+                <PlayArrowIcon /> Lecture
+              </button>
+            </Link>
+            <button className="banner__button" onClick={handlePopup}>
+              <HelpOutlineIcon />
+              Plus d'infos
+            </button>
+          </div>
+        )}
       </div>
+      <QuickView
+        bannerStyle={bannerStyle}
+        movie={movie}
+        popupStatus={popup}
+        popup={handlePopup}
+      />
     </header>
   );
 }

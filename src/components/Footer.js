@@ -7,49 +7,49 @@ import YouTubeIcon from "@material-ui/icons/YouTube";
 
 function Footer() {
   return (
-    <footer className="Footer">
+    <footer className="footer">
       <div className="container">
-        <div className="Footer__socials">
-          <a href="/" className="Footer__social">
+        <div className="footer__socials">
+          <a href="/" className="footer__social">
             <FacebookIcon />
           </a>
-          <a href="/" className="Footer__social">
+          <a href="/" className="footer__social">
             <InstagramIcon />
           </a>
-          <a href="/" className="Footer__social">
+          <a href="/" className="footer__social">
             <TwitterIcon />
           </a>
-          <a href="/" className="Footer__social">
+          <a href="/" className="footer__social">
             <YouTubeIcon />
           </a>
         </div>
-        <ul className="Footer__links">
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+        <ul className="footer__links">
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
-          <li className="Footer__social">
-            <a href="/">lien footer</a>
+          <li className="footer__link">
+            <a href="/">Lien footer</a>
           </li>
         </ul>
-        <div className="Footer_copy"> Netflix Clone - tous droit reserves</div>
+        <div className="footer__copy">Netflix Clone - tous droits réservés</div>
       </div>
     </footer>
   );
